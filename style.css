@@ -290,6 +290,31 @@ footer h2 {
     }
 }
 
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column;
+        text-align: center; /* Centraliza o texto e parágrafos */
+        margin: 40px auto;
+        gap: 30px;
+    }
+    
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza o título e imagem logo se houver */
+        text-align: center;
+    }
+
+    .about-content h1 {
+        font-size: 2rem;
+        text-align: center; /* Força o alinhamento do título */
+    }
+    
+    .about-image {
+        order: -1; 
+    }
+}
+
 /* =========================================
    PÁGINA PRICING & CONTACT (IMAGEM NO TOPO + CONTATO ABAIXO)
    ========================================= */
