@@ -229,6 +229,62 @@ model-viewer {
     margin: 0 auto;
 }
 
+/* =========================================
+   RODAPÉ E LINKS SOCIAIS (Posição Correta)
+   ========================================= */
+footer {
+    width: 100%;
+    padding: 40px 20px 20px;
+    text-align: center; /* Centraliza o "Social:" */
+}
+
+.footer-content h2 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* O "!important" impede que o navegador deixe o link azul/roxo */
+.social-icons a,
+.social-icons a:visited {
+    color: #fee6ca !important; 
+    font-size: 1.5rem;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #ffffff !important;
+    transform: scale(1.2); 
+}
+
+.btn-contact,
+.btn-contact:visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fee6ca !important; 
+    font-size: 1.2rem;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-contact:hover {
+    color: #ffffff !important;
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   Sempre deve ser o último bloco do arquivo!
+   ========================================= */
 @media (max-width: 768px) {
     .header-fixo {
         flex-direction: column;
@@ -274,56 +330,4 @@ model-viewer {
     .pricing-image-container img {
         max-width: 90%;
     }
-
-    /* =========================================
-   RODAPÉ E REDES SOCIAIS
-   ========================================= */
-footer {
-    width: 100%;
-    padding: 40px 20px 20px;
-    text-align: center;
-}
-
-.footer-content h2 {
-    color: #ffffff;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.social-icons a {
-    color: #fee6ca;
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #ffffff;
-    transform: scale(1.2); /* O ícone cresce levemente ao passar o mouse */
-}
-
-/* =========================================
-   BOTÃO DO WHATSAPP (Página Contact)
-   ========================================= */
-.btn-contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: #fee6ca;
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 10px;
-}
-
-.btn-contact:hover {
-    color: #ffffff;
-    transform: translateY(-3px); /* O botão sobe levemente ao passar o mouse */
-}
 }
