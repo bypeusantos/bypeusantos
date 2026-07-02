@@ -356,10 +356,11 @@ footer h2 {
 }
 
 .pricing-image-container img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 10px;
+    width: 100%;        /* Faz a imagem ocupar 100% da largura disponível */
+    max-width: 600px;   /* Mantém o limite de tamanho que você definiu */
+    height: auto;       /* Mantém a proporção da altura automaticamente */
+    display: block;     /* Remove espaços estranhos abaixo da imagem */
+    margin: 0 auto;     /* Garante centralização */
 }
 
 /* =========================================
