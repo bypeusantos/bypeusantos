@@ -316,13 +316,13 @@ footer h2 {
 }
 
 /* =========================================
-   PÁGINA PRICING & CONTACT (IMAGEM NO TOPO + CONTATO ABAIXO)
+   PRICING & CONTACT - CÓDIGO CORRIGIDO
    ========================================= */
 .pc-section {
     display: flex;
-    flex-direction: column; /* Empilha os elementos de cima para baixo */
-    align-items: center; /* Centraliza tudo no meio da tela */
-    gap: 60px; /* Espaço entre a imagem de valores e os botões de contato */
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
     max-width: 900px;
     margin: 80px auto;
     padding: 0 20px;
@@ -330,28 +330,25 @@ footer h2 {
 }
 
 .animated-icon-container {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	margin-bottom: -20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: -20px;
 }
 
 .spinning-icon {
-	width: 360px;
-	height: auto;
-	animation: spinZ 15s linear infinite;
-	transform-origin: center center;
+    width: 360px;
+    height: auto;
+    animation: spinZ 15s linear infinite;
+    transform-origin: center center;
 }
 
+/* CHAVE CORRIGIDA ABAIXO */
 @keyframes spinZ {
-	100% {
-		transform: rotateY(360deg);
-	}
-	0% {
-		transform: rotateY(0deg);
-	}
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+} 
 
-/* Container da Imagem de Valores */
 .pricing-image-container {
     width: 100%;
     display: flex;
@@ -360,77 +357,29 @@ footer h2 {
 
 .pricing-image-container img {
     width: 100%;
-    max-width: 600px; /* Define um tamanho máximo para leitura agradável */
-    height: auto; /* Mantém a proporção original da sua imagem sem esticar */
+    max-width: 600px;
+    height: auto;
     border-radius: 10px;
 }
 
-/* Bloco de Contato Inferior */
-.contact-block-bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.contact-block-bottom h1 {
-    font-size: 2.2rem;
-    color: #fee6ca;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-
-.contact-block-bottom p {
-    color: #cccccc;
-    line-height: 1.6;
-    margin-bottom: 35px;
-}
-
-/* Botões lado a lado */
-.contact-links-horizontal {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap; /* Se a tela do telemóvel for pequena, um botão desce para baixo do outro */
-}
-
-.btn-contact {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 15px 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.btn-contact:hover {
-    border-color: #fee6ca;
-    color: #fee6ca;
-    transform: translateY(-5px); /* O botão sobe ligeiramente ao passar o rato */
-}
-
+/* =========================================
+   RESPONSIVIDADE (MOBILE)
+   ========================================= */
 @media (max-width: 768px) {
-    /* ... (seus outros códigos de mobile já existentes) ... */
-
-    /* Diminuir o ícone giratório para caber bem no celular */
-    .spinning-icon {
-        width: 200px; /* Reduzimos de 360px para 200px */
-    }
-
-    /* Ajustar o espaçamento da seção */
     .pc-section {
-        gap: 30px; /* Reduzimos o espaço entre os elementos */
+        gap: 30px;
         margin: 40px auto;
     }
-    
-    /* Garantir que o texto não fique colado nas bordas */
+
+    .spinning-icon {
+        width: 180px; /* Reduzido para ficar proporcional no mobile */
+    }
+
     .contact-block-bottom h1 {
-        font-size: 1.8rem; /* Um pouco menor para não quebrar linha */
+        font-size: 1.6rem; /* Ajustado para não quebrar linha feio */
+    }
+
+    .pricing-image-container img {
+        max-width: 90%; /* Garante um respiro nas laterais no celular */
     }
 }
