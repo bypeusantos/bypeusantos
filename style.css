@@ -272,6 +272,33 @@ footer {
 }
 
 /* =========================================
+   BOTÃO DO WHATSAPP 
+   ========================================= */
+.btn-contact,
+.btn-contact:visited {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fee6ca !important; 
+    border: 1px solid #fee6ca; /* Adiciona uma borda elegante */
+    background-color: transparent !important;
+    padding: 12px 30px; /* Dá corpo e formato ao botão */
+    border-radius: 40px; /* Deixa as pontas arredondadas */
+    font-size: 1.1rem;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-contact:hover {
+    background-color: #fee6ca !important; /* O botão pinta de bege */
+    color: #050505 !important; /* O texto e ícone ficam escuros para dar contraste */
+    transform: translateY(-3px); /* Efeito de elevação */
+    box-shadow: 0 5px 15px rgba(254, 230, 202, 0.2); /* Sombra suave */
+}
+
+/* =========================================
    RESPONSIVIDADE (MOBILE)
    Sempre deve ser o último bloco do arquivo!
    ========================================= */
