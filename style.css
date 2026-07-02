@@ -414,3 +414,23 @@ footer h2 {
     color: #fee6ca;
     transform: translateY(-5px); /* O botão sobe ligeiramente ao passar o rato */
 }
+
+@media (max-width: 768px) {
+    /* ... (seus outros códigos de mobile já existentes) ... */
+
+    /* Diminuir o ícone giratório para caber bem no celular */
+    .spinning-icon {
+        width: 200px; /* Reduzimos de 360px para 200px */
+    }
+
+    /* Ajustar o espaçamento da seção */
+    .pc-section {
+        gap: 30px; /* Reduzimos o espaço entre os elementos */
+        margin: 40px auto;
+    }
+    
+    /* Garantir que o texto não fique colado nas bordas */
+    .contact-block-bottom h1 {
+        font-size: 1.8rem; /* Um pouco menor para não quebrar linha */
+    }
+}
