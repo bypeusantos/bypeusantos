@@ -248,7 +248,7 @@ footer {
 .footer-content h2 {
     color: #ffffff;
     font-size: 1.5rem;
-    margin-bottom: 50px; /* Removemos a margem para alinhar perfeitamente com os ícones */
+    margin-bottom: auto; /* Removemos a margem para alinhar perfeitamente com os ícones */
 }
 
 .social-icons {
