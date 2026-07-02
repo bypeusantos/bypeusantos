@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Fotográfico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Text:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header-fixo">
+        <div class="logo">
+            <img src="imagens/logo.png" alt="Sua Logo"> 
+        </div>
+        <nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Pricing</a></li>
+    </ul>
+</nav>
+    </header>
+<div class="hero-container">
+    <div class="gradient-bg"></div>
+
+    <div class="hero-content">
+        <img src="imagens/capture-your.png" alt="Capturing your" class="text-side">
+        
+        <model-viewer 
+            src="3D/Lente.glb" 
+            auto-rotate 
+            camera-controls 
+            disable-zoom 
+            disable-pan
+            exposure="1.5"
+            environment-image="neutral">
+        </model-viewer>
+        
+        <img src="imagens/pure-essence.png" alt="pure essence" class="text-side">
+    </div>
+</div>
+
+    <main class="gallery">
+        <div class="photo-item"><img src="imagens/aluno.png" alt="Descrição da foto 1"></div>
+        <div class="photo-item"><img src="imagens/carla.png" alt="Descrição da foto 2"></div>
+        <div class="photo-item"><img src="imagens/carol.png" alt="Descrição da foto 3"></div>
+        <div class="photo-item"><img src="imagens/leticia.png" alt="Descrição da foto 4"></div>
+        <div class="photo-item"><img src="imagens/shir.png" alt="Descrição da foto 5"></div>
+        <div class="photo-item"><img src="imagens/vitoria.png" alt="Descrição da foto 6"></div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h2>Social:</h2>
+            <div class="social-icons">
+                <a href="https://instagram.com/bypeusantos" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.behance.net/joopesilvas1" target="_blank">
+                    <i class="fa-brands fa-behance"></i>
+                </a>
+            </div>
+        </div> </footer>
+
+    <div id="lightbox"><img src="" alt="Zoom"></div>
+	
+	<div class="glow-orb"></div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const images = document.querySelectorAll('.gallery img');
+
+        // Ao clicar em qualquer imagem da galeria
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src; // Copia a imagem para o lightbox
+                lightbox.style.display = 'block'; // Mostra o lightbox
+            });
+        });
+
+        // Fecha o lightbox quando clicar fora da imagem (no fundo preto)
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+// =========================================
+        // SCRIPT DE PROTEÇÃO DE IMAGENS
+        // =========================================
+
+        // Bloqueia o clique com o botão direito apenas nas imagens
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault(); // Cancela a ação padrão do navegador
+            }
+        });
+
+        // Bloqueia a ação de arrastar a imagem com o mouse
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault(); 
+            }
+        });
+    </script>
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+</body>
+</html> 

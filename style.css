@@ -1,0 +1,392 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS E ANIMAÇÃO DE FUNDO
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Cria o foco de luz central (#1a1a1a) que desvanece para o quase preto (#050505) nas bordas */
+    background: radial-gradient(circle at bottom, rgba(254, 230, 202, 0.12) 0%, #080808 100%);
+    background-color: #050505;
+	
+    /* O background-attachment: fixed faz com que o fundo fique parado como uma parede de estúdio enquanto você rola o site */
+    background-attachment: fixed;
+    background-position: bottom;
+    
+    /* A animação faz a luz "pulsar" suavemente */
+    animation: luzEstudio 10s ease-in-out infinite alternate;
+    
+    font-family: 'Mozilla Text', sans-serif;
+    font-weight: 300;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* Animação que faz o tamanho do gradiente crescer e encolher lentamente */
+@keyframes luzEstudio {
+    0% { background-size: 100% 100%; }
+    100% { background-size: 140% 140%; }
+}
+
+/* =========================================
+   CABEÇALHO FIXO
+   ========================================= */
+.header-fixo {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15%;
+    z-index: 1000;
+}
+
+.logo img { height: 40px; }
+
+nav ul { list-style: none; display: flex; gap: 30px; }
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+nav a:hover { color: #fee6ca; transform: scale(1.15); display: inline-block; }
+
+/* =========================================
+   ÁREA 3D (HERO)
+   ========================================= */
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.gradient-bg {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(254, 230, 202, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+model-viewer {
+    width: 300px;
+    height: 300px;
+    background-color: transparent;
+}
+
+.text-side {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* =========================================
+   GALERIA E LIGHTBOX
+   ========================================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* O Segredo: Forçar uma proporção fixa */
+.photo-item {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* TODAS as fotos terão a mesma proporção vertical */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem para preencher o quadrado perfeitamente */
+    display: block;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+}
+
+.photo-item img:hover {
+    transform: scale(1.05);
+}
+
+#lightbox {
+    display: none; /* Inicia oculto */
+    position: fixed; 
+    z-index: 99999; /* Aumentei para garantir que fique sobre TUDO */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* Escurecimento total */
+    text-align: center;
+    cursor: zoom-out;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    margin-top: 10vh; /* Ajustado para centralizar */
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    /* Garante que a imagem não tente seguir o fluxo do HTML */
+    position: relative; 
+}
+/* =========================================
+   RODAPÉ CORRIGIDO
+   ========================================= */
+footer {
+    background-color: transparent;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Mudado de baseline para center */
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 500;
+    color: #ffffff; /* Garante que o texto fique branco */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center; /* Garante que os ícones fiquem alinhados entre si */
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: #ffffff; /* FORÇA A COR BRANCA (REMOVE O AZUL) */
+    font-size: 1.2rem;
+    transition: opacity 0.3s;
+    display: flex; /* Melhora a renderização do ícone */
+}
+
+.social-icons a:hover {
+    opacity: 0.6;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 768px) {
+    .header-fixo { flex-direction: column; gap: 15px; }
+    .hero-content { flex-direction: column; gap: 20px; }
+    model-viewer { width: 220px; height: 220px; }
+    .gallery { grid-template-columns: 1fr; padding: 20px; }
+}
+
+/* =========================================
+   PÁGINA ABOUT
+   ========================================= */
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px; /* Espaço elegante entre a foto e o texto */
+    max-width: 1000px;
+    margin: 80px auto; /* Centraliza a seção e dá espaço do cabeçalho */
+    padding: 0 20px;
+}
+
+/* Configuração da área de texto */
+.about-content {
+    flex: 1; /* Faz o texto ocupar metade do espaço */
+}
+
+.about-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fee6ca; /* A sua cor champanhe para dar destaque ao título */
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8; /* Dá respiro entre as linhas de texto, super importante para leitura */
+    color: #cccccc; /* Um cinza claro para contrastar suavemente com o fundo escuro */
+    margin-bottom: 15px;
+}
+
+.logo-about {
+	max-width: 180px;
+	margin-bottom: 25px;
+	display: block;
+}
+
+/* Configuração da área da foto */
+.about-image {
+    flex: 1; /* Faz a foto ocupar a outra metade */
+    display: flex;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px; /* Limita o tamanho para não ficar gigante em monitores grandes */
+    border-radius: 15px; /* Bordas levemente arredondadas */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); /* Sombra profunda para destacar a foto do fundo */
+    object-fit: cover;
+    aspect-ratio: 4 / 5; /* Mantém a foto com formato de retrato clássico */
+}
+
+/* =========================================
+   RESPONSIVIDADE DA PÁGINA ABOUT (Mobile)
+   ========================================= */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column; /* Empilha a foto e o texto */
+        text-align: center; /* Centraliza o texto no telemóvel */
+        margin: 40px auto;
+        gap: 30px;
+    }
+    
+    .about-content h1 {
+        font-size: 2rem;
+    }
+    
+    /* Inverte a ordem no celular para a foto aparecer primeiro */
+    .about-image {
+        order: -1; 
+    }
+}
+
+/* =========================================
+   PÁGINA PRICING & CONTACT (IMAGEM NO TOPO + CONTATO ABAIXO)
+   ========================================= */
+.pc-section {
+    display: flex;
+    flex-direction: column; /* Empilha os elementos de cima para baixo */
+    align-items: center; /* Centraliza tudo no meio da tela */
+    gap: 60px; /* Espaço entre a imagem de valores e os botões de contato */
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.animated-icon-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: -20px;
+}
+
+.spinning-icon {
+	width: 360px;
+	height: auto;
+	animation: spinZ 15s linear infinite;
+	transform-origin: center center;
+}
+
+@keyframes spinZ {
+	100% {
+		transform: rotateY(360deg);
+	}
+	0% {
+		transform: rotateY(0deg);
+	}
+}
+
+/* Container da Imagem de Valores */
+.pricing-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-image-container img {
+    width: 100%;
+    max-width: 600px; /* Define um tamanho máximo para leitura agradável */
+    height: auto; /* Mantém a proporção original da sua imagem sem esticar */
+    border-radius: 10px;
+}
+
+/* Bloco de Contato Inferior */
+.contact-block-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-block-bottom h1 {
+    font-size: 2.2rem;
+    color: #fee6ca;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.contact-block-bottom p {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+/* Botões lado a lado */
+.contact-links-horizontal {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Se a tela do telemóvel for pequena, um botão desce para baixo do outro */
+}
+
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+    border-color: #fee6ca;
+    color: #fee6ca;
+    transform: translateY(-5px); /* O botão sobe ligeiramente ao passar o rato */
+}
