@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="icon" type="image/png" href="images/fav.png">
+    <!-- Fontes: Montserrat para o corpo e Cinzel para o Menu com toque Dark/Elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>By Peu Santos</title>
+    <!-- Fonte elegante e moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header-principal">
+        <nav>
+            <ul>
+                <li><a href="https://instagram.com/bypeusantos" target="_blank">Photography</a></li>
+                <li><a href="https://instagram.com/byacaraje" target="_blank">Visual Arts</a></li>
+                <li><a href="https://api.whatsapp.com/send/?phone=77999306488&text&type=phone_number&app_absent=0" target="_blank">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção do Portfólio Duplo -->
+        <section class="portfolio-duplo" id="portfolio">
+            
+            <!-- Seta Inteligente -->
+            <button id="seta-toggle" class="seta-nav seta-dir" aria-label="Alternar painel">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <!-- O "Trilho" que vai deslizar de um lado para o outro -->
+            <div class="trilho-slider" id="trilho">
+                
+<!-- PAINEL 1: FOTOGRAFIA -->
+<div class="painel">
+    <img src="images/logo-bypeusantos.png" alt="Logo Fotografia" class="logo-giratoria">
+    
+    <div class="grade-imagens">
+        <!-- Foto Lateral Esquerda -->
+        <div class="foto-box">
+            <img src="images/ester.png" alt="Foto Autorretrato ou Esporte" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Foto do Meio (Destaque) -->
+        <div class="foto-box destaque">
+            <img src="images/anny.png" alt="Foto Principal" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Foto Lateral Direita -->
+        <div class="foto-box">
+            <img src="images/shir.png" alt="Foto Movimento" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </div>
+</div>
+
+<!-- PAINEL 2: ARTES DIGITAIS -->
+<div class="painel">
+    <img src="images/logo-byacaraje.png" alt="Logo Artes" class="logo-giratoria">
+    
+    <div class="grade-imagens">
+        <!-- Arte Lateral Esquerda -->
+        <div class="foto-box">
+            <img src="images/capitaes.png" alt="Arte Digital 1" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Arte do Meio (Destaque) -->
+        <div class="foto-box destaque">
+            <img src="images/pastor.png" alt="Arte Digital Principal" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <!-- Arte Lateral Direita -->
+        <div class="foto-box">
+            <img src="images/licenca.png" alt="Arte Digital 3" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </div>
+</div>
+
+<script>
+    const trilho = document.getElementById('trilho');
+    const setaToggle = document.getElementById('seta-toggle');
+    
+    let mostrandoArtes = false; 
+
+    setaToggle.addEventListener('click', () => {
+        if (!mostrandoArtes) {
+            trilho.style.transform = 'translateX(-50%)';
+            setaToggle.classList.add('seta-virada');
+            mostrandoArtes = true;
+        } else {
+            trilho.style.transform = 'translateX(0)';
+            setaToggle.classList.remove('seta-virada');
+            mostrandoArtes = false;
+        }
+    });
+
+    // ==========================================
+    // BLOQUEAR O CLIQUE COM O BOTÃO DIREITO
+    // ==========================================
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault(); // Impede que o menu de contexto apareça
+    });
+
+    // Efeito de movimento suave com o mouse (Parallax)
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+        const paineisAtivos = document.querySelectorAll('.painel');
+        
+        paineisAtivos.forEach(painel => {
+            const grade = painel.querySelector('.grade-imagens');
+            const logo = painel.querySelector('.logo-giratoria');
+
+            if (grade && logo) {
+                grade.style.transform = `translate(${-x * 0.4}px, ${-y * 0.4}px)`;
+                logo.style.transform = `perspective(600px) rotateY(${Date.now() * 0.002 * 50}deg) translate(${x * 0.6}px, ${y * 0.6}px)`;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

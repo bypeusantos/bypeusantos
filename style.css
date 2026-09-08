@@ -1,0 +1,282 @@
+/* =========================================
+   RESET BÁSICO
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   VARIÁVEIS DE CORES
+   ========================================= */
+:root {
+    --preto-fundo: #050505;
+    --vermelho-escuro: #4a0000;
+    --vermelho-vivo: #d90429;
+    --texto-claro: #f0f0f0;
+}
+
+body {
+    /* Espalha mais o gradiente para suavizar as transições de tom escuro */
+    background: radial-gradient(circle at 50% 50%, #5a0000 0%, #150000 50%, var(--preto-fundo) 100%);
+    background-color: var(--preto-fundo);
+    color: var(--texto-claro);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    
+    /* Força o navegador a processar melhor as cores do fundo */
+    -webkit-backface-visibility: hidden;
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+.header-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 10%; /* Aumentei de 30px para 50px para dar mais respiro no topo */
+    background: transparent;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--texto-claro);
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif; /* Altera a fonte para o estilo dark/elegante */
+    font-size: 0.75rem;
+    letter-spacing: 5px; /* Aumenta ligeiramente o espaço para dar um ar mais sofisticado */
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--vermelho-vivo);
+}
+
+/* =========================================
+   PORTFÓLIO DESLIZANTE (SLIDER DUPLO CORRIGIDO)
+   ========================================= */
+.portfolio-duplo {
+    position: relative;
+    width: 100vw;
+    max-width: 100%;
+    overflow: visible; /* Mudamos de hidden para visible para não cortar nada! */
+    padding: 50px 0;
+    min-height: 85vh;
+}
+
+/* O trilho tem exatamente o dobro da largura da tela (2 painéis de 100vw cada) */
+.trilho-slider {
+    display: flex;
+    width: 200vw; 
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Cada painel ocupa exatamente 100vw (1 tela inteira) */
+.painel {
+    width: 100vw;
+    flex: 0 0 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinha do topo para baixo, dando margem correta */
+    padding: 0 5%;
+    box-sizing: border-box;
+    gap: 30px;
+}
+
+/* Cada painel ocupa exatamente 50% do trilho, garantindo que ocupem 100% da tela cada um */
+.painel {
+    width: 50%;
+    flex: 0 0 50%; /* Garante que o painel não encolha nem estique */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    box-sizing: border-box;
+}
+
+/* Grade de imagens corrigida */
+.grade-imagens {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: 25px;
+    width: 100%;
+    max-width: 950px;
+    align-items: center;
+}
+
+/* Efeito da Logo Giratória em 3D (Eixo Y) */
+.logo-giratoria {
+    width: 90px; 
+    margin-bottom: 70px; /* Como usamos o 'gap' no painel acima, zeramos a margem antiga para não acumular */
+    transform: perspective(600px); 
+    animation: girarLogo 15s linear infinite;
+}
+
+@keyframes girarLogo {
+    0% { transform: perspective(600px) rotateY(0deg); }
+    100% { transform: perspective(600px) rotateY(360deg); }
+}
+
+/* =========================================
+   GRADE DE FOTOS COM PROFUNDIDADE E ROTAÇÃO
+   ========================================= */
+.grade-imagens {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: 25px;
+    width: 100%;
+    max-width: 950px;
+    align-items: center;
+    transition: transform 0.1s ease-out; /* Adicionado para suavizar o movimento do mouse */
+}
+
+/* Estilo Base das Caixas */
+.foto-box {
+    background-color: #0c0c0c;
+    border: 1px solid rgba(217, 4, 41, 0.3);
+    aspect-ratio: 3 / 4;
+    width: 95%; /* Um pouco menores para dar espaço à sobreposição */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vermelho-vivo);
+    font-size: 1rem;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+/* Foto Lateral Esquerda: inclinada para a esquerda e enfiada para trás */
+.grade-imagens .foto-box:first-child {
+    transform: perspective(600px) rotate(-8deg) translateX(15px) scale(0.88);
+    opacity: 0.6;
+    filter: brightness(0.6);
+    z-index: 1; /* Fica atrás da foto do meio */
+}
+
+/* Foto Lateral Direita: inclinada para a direita e enfiada para trás */
+.grade-imagens .foto-box:last-child {
+    transform: perspective(600px) rotate(8deg) translateX(-15px) scale(0.88);
+    opacity: 0.6;
+    filter: brightness(0.6);
+    z-index: 1; /* Fica atrás da foto do meio */
+}
+
+/* Caixa do Meio em Destaque (Totalmente reta e na frente) */
+.foto-box.destaque {
+    width: 100%; 
+    transform: perspective(600px) rotate(0deg) scale(1.02); /* Reduzimos um pouco o scale para não estourar a tela */
+    opacity: 1;
+    filter: brightness(1);
+    z-index: 3;
+    border: 1px solid var(--vermelho-vivo);
+    box-shadow: 0 15px 40px rgba(217, 4, 41, 0.35);
+}
+
+/* Hover Suave: Amplia e aplica um leve giro dinâmico em QUALQUER foto */
+.foto-box:hover {
+    transform: perspective(600px) rotate(0deg) scale(1.12) !important;
+    opacity: 1 !important;
+    filter: brightness(1.15) !important;
+    z-index: 10 !important; /* Salta para cima de tudo ao passar o mouse */
+    border-color: var(--vermelho-vivo);
+    box-shadow: 0 20px 50px rgba(217, 4, 41, 0.5);
+}
+
+/* =========================================
+   CONFIGURAÇÃO DA SETA INTELIGENTE
+   ========================================= */
+.seta-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--texto-claro);
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: color 0.3s ease;
+    padding: 10px;
+}
+
+.seta-nav:hover {
+    color: var(--vermelho-vivo);
+}
+
+.seta-dir { 
+    right: 25px; 
+}
+
+.seta-nav i {
+    transition: transform 0.4s ease;
+}
+
+.seta-virada i {
+    transform: rotate(180deg);
+}
+
+/* =========================================
+   RESPONSIVIDADE (MOBILE / TELAS MENORES)
+   ========================================= */
+@media (max-width: 768px) {
+    .header-principal {
+        padding: 20px 5%;
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .painel {
+        padding: 0 4%;
+    }
+
+    /* Em telemóveis, transformamos a grade em uma coluna única focada no destaque */
+    .grade-imagens {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 280px;
+    }
+
+    /* Esconde as fotos laterais no mobile para focar apenas na principal, ou redimensiona */
+    .foto-box:not(.destaque) {
+        display: none; 
+    }
+
+    .foto-box.destaque {
+        transform: scale(1);
+        opacity: 1;
+        filter: brightness(1);
+    }
+
+    .logo-giratoria {
+        width: 70px;
+        margin-bottom: 25px;
+    }
+
+    /* Aproxima a seta da borda para não cortar em telas pequenas */
+    .seta-dir {
+        right: 10px;
+        font-size: 2rem;
+    }
+}
